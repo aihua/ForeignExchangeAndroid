@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-
 public class ForeignExchange extends AppCompatActivity {
 
     @Override
@@ -17,7 +16,7 @@ public class ForeignExchange extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Fragment i = new InflaterViewToFragment();
+        Fragment i =new FragmentWelcome();
 
         FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
         fragTransaction.replace(R.id.fragm_container, i );

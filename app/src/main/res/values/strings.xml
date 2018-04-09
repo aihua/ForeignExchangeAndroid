@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Foreign Exchange</string>
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_foreign_exchange">ForeignExchange</string>
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_label">You are in United States</string>
+    <string name="youAreIn_label">You are in</string>
+    <string name="amount_label">Amount</string>
 </resources>
