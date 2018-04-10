@@ -21,4 +21,11 @@
         <item name="colorAccent">@color/colorCircProgBar</item>
     </style>
 
+    <style name="Buttons">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/general_label_size</item>
+        <item name="android:background">@color/colorButton</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
 </resources>

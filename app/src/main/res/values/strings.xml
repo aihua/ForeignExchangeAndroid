@@ -19,4 +19,10 @@
     </string>
     <string name="yes_button_text">YES</string>
     <string name="no_button_text">NO</string>
+    <string name="departureDate_label">Departure Date</string>
+    <string name="returnDate_label">Return Date</string>
+    <string name="formatDate_label">DD-MM-AA</string>
+    <string name="countriesVisting_label">Countries Visting</string>
+    <string name="fileTravelItinerary_btn_text">File Travel Itinerary</string>
+    <string name="cancel_btn_text">Cancel</string>
 </resources>
