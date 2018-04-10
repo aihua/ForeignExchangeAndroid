@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class ForeignExchange extends AppCompatActivity {
 
-    private Fragment welcomeFragment;
+    private Fragment welcomeFragment, travelItineraryFragment;
     private Toolbar toolbar;
     private TextView toolbarTitle;
     private ProgressBar circularProgBar;
@@ -37,14 +37,15 @@ public class ForeignExchange extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         setupToolbarText(R.string.welcome_title);
 
+        // Obitiene Fragmentos
+        welcomeFragment = new FragmentWelcome(); // Welcome
+        travelItineraryFragment = new FragmentTravelItinerary();  // Travel Itinerary
+
         runProgBar();          // Ejecuta progress Bar
         setupVerifyProgBar();  // Ejecuta la verificacion del progress Bar
 
-        // Obtiene el fragment de Welcome
-        welcomeFragment = new FragmentWelcome();
-        FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
-        fragTransaction.replace(R.id.fragm_main_container, welcomeFragment );
-        fragTransaction.commit();
+        // Incrustar Fragmento
+        embeddedFragmentToMain(welcomeFragment);
 
     }// Fin de onCreate
 
@@ -53,7 +54,7 @@ public class ForeignExchange extends AppCompatActivity {
      * Param:
      *      id: id del string a adjuntar
      */
-    public void setupToolbarText( int id ){
+    private void setupToolbarText( int id ){
 
         toolbarTitle.setText(id);
 
@@ -62,7 +63,7 @@ public class ForeignExchange extends AppCompatActivity {
     /* Funcion que se encarga de ejecutar el
      * progress bar por un tiempo de 5 segundos
      */
-    public void runProgBar(){
+    private void runProgBar(){
 
         circularProgBar.setVisibility( View.VISIBLE );
 
@@ -130,6 +131,16 @@ public class ForeignExchange extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        // Identifica el dialogo a crear.
+                        switch(callDialog){
+                            case "A":
+
+                                embeddedFragmentToMain(travelItineraryFragment);
+                                break;
+                            case "B":
+                                callDialog = "F";
+                                break;
+                        }// Fin del switch
                     }
                 })
                 .setNegativeButton(R.string.no_button_text, new DialogInterface.OnClickListener() {
@@ -146,7 +157,6 @@ public class ForeignExchange extends AppCompatActivity {
                                 callDialog = "F";
                                 break;
                         }// Fin del switch
-
                     }
                 });
 
@@ -154,5 +164,17 @@ public class ForeignExchange extends AppCompatActivity {
         travelItineraryDialog.show();
 
     }// Fin de createTravelItineraryDialog
+
+    /* Funcion que se encarga de incrustar un fragmento
+     * al diseño principal a traves del contenedor de fragmentos
+     * que este posee.
+     */
+    private void embeddedFragmentToMain( Fragment layoutRequired ){
+
+        FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
+        fragTransaction.replace(R.id.fragm_main_container, layoutRequired );
+        fragTransaction.commit();
+
+    }// Fin de embeddedFragmentToMain
 
 }// Fin clase ForeignExchange
