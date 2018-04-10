@@ -2,7 +2,21 @@
     <string name="app_name">Foreign Exchange</string>
     <string name="action_settings">Settings</string>
     <string name="welcome_title">Welcome</string>
-    <string name="welcome_label">You are in United States</string>
+    <string name="welcome_label">You are in Colombia</string>
     <string name="youAreIn_label">You are in</string>
     <string name="amount_label">Amount</string>
+    <string name="noTravelItinerary_title">No Travel Itinerary</string>
+    <string name="noTravelItinerary_text">
+        You have not filed a travel itinerary.<br></br>
+        You  card may be declined when used in Colombia, due to fraud protection.<br></br>
+        <b>To avoid this, would you like to file a travel itinerary now?</b>
+    </string>
+    <string name="countryNoTravelItinerary_title">Country Not In Travel Itinerary</string>
+    <string name="countryNoTravelItinerary_text">
+        Colombia is not included in your travel itinerary.<br></br>
+        Your card may be declined when used in Colombia, due to fraud protection.<br></br>
+        <b>To avoid this, would you like to update your travel itinerary now?</b>
+    </string>
+    <string name="yes_button_text">YES</string>
+    <string name="no_button_text">NO</string>
 </resources>
