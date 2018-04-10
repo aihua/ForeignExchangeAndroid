@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTextView">#0062c4</color>
     <color name="colorCircProgBar">#0062c4</color>
+    <color name="colorAppBarTitle">#FFFFFF</color>
 </resources>
