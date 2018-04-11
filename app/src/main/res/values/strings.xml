@@ -25,4 +25,15 @@
     <string name="countriesVisting_label">Countries Visting</string>
     <string name="fileTravelItinerary_btn_text">File Travel Itinerary</string>
     <string name="cancel_btn_text">Cancel</string>
+
+    <!-- Seccion Arreglos -->
+    <string name="countrie_select_prompt">Select Countrie</string>
+    <string-array name="countries">
+        <item>Bolivia</item>
+        <item>Colombia</item>
+        <item>Chile</item>
+        <item>Ecuador</item>
+        <item>Peru</item>
+    </string-array>
+
 </resources>
