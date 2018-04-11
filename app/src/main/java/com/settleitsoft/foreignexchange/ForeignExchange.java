@@ -38,8 +38,8 @@ public class ForeignExchange extends AppCompatActivity {
         setupToolbarText(R.string.welcome_title);
 
         // Obitiene Fragmentos
-        welcomeFragment = new FragmentWelcome(); // Welcome
-        travelItineraryFragment = new FragmentTravelItinerary();  // Travel Itinerary
+        welcomeFragment         = new FragmentWelcome();            // Welcome
+        travelItineraryFragment = new FragmentTravelItinerary();    // Travel Itinerary
 
         runProgBar();          // Ejecuta progress Bar
         setupVerifyProgBar();  // Ejecuta la verificacion del progress Bar
@@ -57,8 +57,7 @@ public class ForeignExchange extends AppCompatActivity {
     private void setupToolbarText( int id ){
 
         toolbarTitle.setText(id);
-
-    }// fin de setupToolbar
+    }
 
     /* Funcion que se encarga de ejecutar el
      * progress bar por un tiempo de 5 segundos
@@ -74,8 +73,7 @@ public class ForeignExchange extends AppCompatActivity {
                 circularProgBar.setVisibility( View.GONE );
             }
         }, 5000);
-
-    }// fin de runProgBar
+    }
 
     /* Funcion que se encarga de configurar la verificacion
      * del estado del progress bar.
@@ -93,8 +91,7 @@ public class ForeignExchange extends AppCompatActivity {
                 }
             }
         },1000);
-
-    }// Fin funcion setupVerifyProgBarxd
+    }
 
     /* Funcion que se encarga de crear los dialogos
      * para la creacion o actualizacion del itinerario
@@ -162,8 +159,7 @@ public class ForeignExchange extends AppCompatActivity {
 
         // Muestra el Dialogo
         travelItineraryDialog.show();
-
-    }// Fin de createTravelItineraryDialog
+    }
 
     /* Funcion que se encarga de incrustar un fragmento
      * al diseño principal a traves del contenedor de fragmentos
@@ -174,7 +170,6 @@ public class ForeignExchange extends AppCompatActivity {
         FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
         fragTransaction.replace(R.id.fragm_main_container, layoutRequired );
         fragTransaction.commit();
-
-    }// Fin de embeddedFragmentToMain
+    }
 
 }// Fin clase ForeignExchange

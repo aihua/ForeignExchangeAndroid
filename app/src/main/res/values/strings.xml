@@ -7,15 +7,11 @@
     <string name="amount_label">Amount</string>
     <string name="noTravelItinerary_title">No Travel Itinerary</string>
     <string name="noTravelItinerary_text">
-        You have not filed a travel itinerary.<br></br>
-        You  card may be declined when used in Colombia, due to fraud protection.<br></br>
-        <b>To avoid this, would you like to file a travel itinerary now?</b>
+        You have not filed a travel itinerary.\nYou  card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to file a travel itinerary now?</b>
     </string>
     <string name="countryNoTravelItinerary_title">Country Not In Travel Itinerary</string>
     <string name="countryNoTravelItinerary_text">
-        Colombia is not included in your travel itinerary.<br></br>
-        Your card may be declined when used in Colombia, due to fraud protection.<br></br>
-        <b>To avoid this, would you like to update your travel itinerary now?</b>
+        Colombia is not included in your travel itinerary.\nYour card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to update your travel itinerary now?</b>
     </string>
     <string name="yes_button_text">YES</string>
     <string name="no_button_text">NO</string>
@@ -25,16 +21,17 @@
     <string name="countriesVisting_label">Countries Visting</string>
     <string name="fileTravelItinerary_btn_text">File Travel Itinerary</string>
     <string name="cancel_btn_text">Cancel</string>
+    <string name="country_select_Text">Please select a country</string>
 
     <!-- Seccion Arreglos -->
-    <string name="countrie_select_prompt">Select Countrie</string>
+    <string name="country_select_prompt">Select Country</string>
     <string-array name="countries">
-        <item>@string/countrie_select_prompt</item>
-        <item>Bolivia</item>
-        <item>Colombia</item>
-        <item>Chile</item>
-        <item>Ecuador</item>
-        <item>Peru</item>
+        <item>@string/country_select_prompt</item>
+        <item>068,Bolivia</item>
+        <item>170,Colombia</item>
+        <item>152,Chile</item>
+        <item>218,Ecuador</item>
+        <item>604,Peru</item>
     </string-array>
 
 </resources>

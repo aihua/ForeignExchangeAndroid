@@ -102,15 +102,14 @@
         android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:entries="@array/countries"
         android:spinnerMode="dialog"
-        app:layout_constraintEnd_toStartOf="@+id/countrie_add_Button"
+        app:layout_constraintEnd_toStartOf="@+id/country_add_Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
         tools:ignore="MissingConstraints" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/countrie_add_Button"
+        android:id="@+id/country_add_Button"
         android:layout_width="102dp"
         android:layout_height="34dp"
         android:layout_marginEnd="16dp"
@@ -120,13 +119,13 @@
         android:scaleType="center"
         android:tint="@color/colorIconFloatButton"
         app:backgroundTint="@color/colorAddFloatButton"
-        app:layout_constraintEnd_toStartOf="@+id/countrie_remove_Button"
+        app:layout_constraintEnd_toStartOf="@+id/country_remove_Button"
         app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="MissingConstraints" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/countrie_remove_Button"
+        android:id="@+id/country_remove_Button"
         android:layout_width="102dp"
         android:layout_height="34dp"
         android:layout_marginEnd="24dp"
