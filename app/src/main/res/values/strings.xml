@@ -29,6 +29,7 @@
     <!-- Seccion Arreglos -->
     <string name="countrie_select_prompt">Select Countrie</string>
     <string-array name="countries">
+        <item>@string/countrie_select_prompt</item>
         <item>Bolivia</item>
         <item>Colombia</item>
         <item>Chile</item>
