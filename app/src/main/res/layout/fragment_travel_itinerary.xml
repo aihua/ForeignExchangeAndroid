@@ -79,15 +79,18 @@
         android:id="@+id/countriesVisting_Text"
         android:layout_width="140dp"
         android:layout_height="28dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="35dp"
         android:text="@string/countriesVisting_label"
         android:textColor="@color/colorTextView"
         android:textSize="@dimen/general_label_size"
         android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/returnDate_Text"
+        app:layout_constraintTop_toBottomOf="@+id/returnDate_Edit"
         tools:ignore="MissingConstraints" />
 
     <Spinner
@@ -95,38 +98,55 @@
         android:layout_width="0dp"
         android:layout_height="34dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="33dp"
-        android:entries="@array/countries"
-        android:prompt="@string/countrie_select_prompt"
-        android:spinnerMode="dialog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/countriesVisting_Text"
-        app:layout_constraintTop_toBottomOf="@+id/returnDate_Edit"
-        tools:ignore="MissingConstraints" />
-
-    <ListView
-        android:id="@+id/countries_List"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="24dp"
+        android:entries="@array/countries"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toStartOf="@+id/countrie_add_Button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countries_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/countrie_add_Button"
+        android:layout_width="102dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorAddFloatButton"
+        app:layout_constraintEnd_toStartOf="@+id/countrie_remove_Button"
+        app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/countrie_remove_Button"
+        android:layout_width="102dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorRemoveFloatButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/fileTravelItinerary_Button"
         style="@style/Buttons"
         android:layout_width="175dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="45dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="41dp"
@@ -141,7 +161,7 @@
         style="@style/Buttons"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="45dp"
         android:layout_marginEnd="24dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="24dp"
@@ -152,6 +172,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fileTravelItinerary_Button"
         app:layout_constraintTop_toBottomOf="@+id/countries_List"
+        tools:ignore="MissingConstraints" />
+
+    <ListView
+        android:id="@+id/countries_List"
+        android:layout_width="0dp"
+        android:layout_height="178dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
         tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
