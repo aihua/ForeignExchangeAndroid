@@ -1,9 +1,9 @@
 package com.settleitsoft.foreignexchange;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ public class FragmentTravelItinerary extends Fragment {
     private EmbeddedDatepicker departureDatepicker, returnDatepicker;
     private FloatingActionButton countryAddButton, countryRemoveButton;
     private Spinner countriesSpinner;
-    private Button fileTravelButton;
+    private Button fileTravelButton, cancelButton;
     private String selectedCountry, selectedCountryList;
     private CountriesToAdapter countriesAdapter;
     private SelectCountryToAdapter selectCountryAdapter;
@@ -36,7 +36,10 @@ public class FragmentTravelItinerary extends Fragment {
                              Bundle savedInstanceState) {
 
         // Infla la vista correspondiente
-        travelItineraryLayout   = inflater.inflate(R.layout.fragment_travel_itinerary, container, false);
+        travelItineraryLayout = inflater.inflate(R.layout.fragment_travel_itinerary, container, false);
+
+        // Configura titulo del toolbar
+        ForeignExchange.setupToolbarText(R.string.create_travel_itinerary_title);
 
         // Obtiene items del diseño
         departureDate         = travelItineraryLayout.findViewById(R.id.departureDate_Edit);
@@ -46,6 +49,7 @@ public class FragmentTravelItinerary extends Fragment {
         countriesSpinner      = travelItineraryLayout.findViewById(R.id.countries_spinner);
         countriesListView     = travelItineraryLayout.findViewById(R.id.countries_List);
         fileTravelButton      = travelItineraryLayout.findViewById(R.id.fileTravelItinerary_Button);
+        cancelButton          = travelItineraryLayout.findViewById(R.id.cancel_Button);
 
         // Instancia los objetos necesarios para la correcta interaccion con el usuario
         departureDatepicker  = new EmbeddedDatepicker(getActivity(), departureDate);
@@ -128,7 +132,67 @@ public class FragmentTravelItinerary extends Fragment {
             }
         });
 
+        // Declara el evento de escucha del item fileTravelItinerary_Button
+        fileTravelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                boolean fileCreate      = true;
+                selectedCountryArray    = selectCountryAdapter.getCountriesArray();
+                String formatDate       = getResources().getString(R.string.formatDate_label);
+
+                if( String.valueOf(departureDate.getText()).equals(formatDate) ){
+                    fileCreate = false;
+                }else
+                if( String.valueOf(returnDate.getText()).equals(formatDate)){
+                    fileCreate = false;
+                }else
+                if( selectedCountryArray.isEmpty() ){
+                    fileCreate = false;
+                }
+
+                if( fileCreate ){
+                    // Mensaje de aviso al usuario
+                    setupMessageToast(R.string.travel_itinerary_created);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if( messageToast.getView().isShown() ){
+                                handler.postDelayed(this, 1000);
+                            }else{
+                                launchTransaction("B");
+                            }
+                        }
+                    },1000);
+                }else{
+                    // Mensaje de aviso al usuario
+                    setupMessageToast(R.string.data_required_Text);
+                }
+            }
+        });
+
+        // Declara el evento de escucha del item cancel_Button
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchTransaction("A");
+            }
+        });
+
     }// fin de listenerEventsSetup
+
+    /* Metodo encargdo de lanzar la transaccion Welcome con su
+     * correspondiente parametro.
+     */
+    private void launchTransaction( String dialog ){
+        Bundle args = new Bundle();
+        args.putString("callDialog",dialog);
+        Fragment welcomeFragment  = ForeignExchange.getWelcomeFragment();
+        welcomeFragment.setArguments(args);
+        FragmentToTransaction.commit( ForeignExchange.getActivityMain(), welcomeFragment );
+    }
 
     /* Configura los mensajes de aviso o alerta
      * para el usuario */
