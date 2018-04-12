@@ -9,14 +9,14 @@ public class CountriesToAdapter {
     private Activity activity;
     private ArrayAdapter<CharSequence> countriesAdapter;
 
-
+    /* Metodo constructor de la clase */
     public CountriesToAdapter(Activity activity) {
         this.activity = activity;
-        this.countriesAdapter = setupAdapter();
+        this.countriesAdapter = getSetupAdapter();
     }
 
     /* Metodo que se encarga de configurar el adapatador. */
-    private ArrayAdapter<CharSequence> setupAdapter(){
+    private ArrayAdapter<CharSequence> getSetupAdapter(){
 
         return new ArrayAdapter(this.activity,
                                 android.R.layout.select_dialog_item,
@@ -44,9 +44,9 @@ public class CountriesToAdapter {
         return countriesArray;
     }
 
-    /* Obtiene el adaptador de paises  */
+    /* Metodo que obtiene el adaptador de paises. */
     public ArrayAdapter<CharSequence> getAdapter(){
-        return countriesAdapter;
+        return this.countriesAdapter;
     }
 
 }// Fin de la clase
