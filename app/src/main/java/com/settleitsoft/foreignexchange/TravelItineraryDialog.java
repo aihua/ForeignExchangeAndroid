@@ -1,15 +1,20 @@
 package com.settleitsoft.foreignexchange;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+
+import java.util.ArrayList;
 
 public class TravelItineraryDialog {
 
-    public static void createDialog( final Activity activity , final String callDialog ){
+    public static void createDialog( final Activity activity , final ArrayList<String> data ){
 
-        int titleId = 0;
-        int textId  = 0;
+        int titleId             = 0;
+        int textId              = 0;
+        final String callDialog = data.get(0);
 
         // Identifica el dialogo a crear.
         switch(callDialog){
@@ -36,14 +41,22 @@ public class TravelItineraryDialog {
                 .setPositiveButton(R.string.yes_button_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Bundle args = new Bundle();
+                        Fragment travelItineraryFragment = ForeignExchange.getTravelItineraryFragment();
+
                         // Identifica el dialogo a crear.
                         switch(callDialog){
                             case "A":
-                                FragmentToTransaction.commit(activity, ForeignExchange.getTravelItineraryFragment());
+                                args.putStringArrayList("data", data );
                                 break;
                             case "B":
+                                args.putStringArrayList("data", data );
                                 break;
                         }// Fin del switch
+
+                        travelItineraryFragment.setArguments(args);
+                        FragmentToTransaction.commit(activity, travelItineraryFragment);
                     }
                 })
                 .setNegativeButton(R.string.no_button_text, new DialogInterface.OnClickListener() {
@@ -53,7 +66,8 @@ public class TravelItineraryDialog {
                         // Identifica el dialogo a crear.
                         switch(callDialog){
                             case "A":
-                                createDialog( activity,"B");
+                                data.set(0,"B");
+                                createDialog( activity, data );
                                 break;
                             case "B":
                                 break;

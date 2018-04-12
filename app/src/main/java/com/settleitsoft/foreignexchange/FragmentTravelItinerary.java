@@ -29,6 +29,16 @@ public class FragmentTravelItinerary extends Fragment {
     private ArrayList<String> selectedCountryArray;
     private Toast messageToast;
     private ListView countriesListView;
+    private ArrayList<String> data;
+
+    // Obtengo parametros pasados al fragment.
+    @Override
+    public void onCreate( Bundle bundle ) {
+        super.onCreate(bundle);
+        if( getArguments() != null ){
+            this.data = getArguments().getStringArrayList("data");
+        }
+    }
 
     // Metodo principal o constructor
     @Override
@@ -37,9 +47,6 @@ public class FragmentTravelItinerary extends Fragment {
 
         // Infla la vista correspondiente
         travelItineraryLayout = inflater.inflate(R.layout.fragment_travel_itinerary, container, false);
-
-        // Configura titulo del toolbar
-        ForeignExchange.setupToolbarText(R.string.create_travel_itinerary_title);
 
         // Obtiene items del diseño
         departureDate         = travelItineraryLayout.findViewById(R.id.departureDate_Edit);
@@ -64,7 +71,27 @@ public class FragmentTravelItinerary extends Fragment {
 
         // Configura la lista del combo paises
         countriesAdapter = new CountriesToAdapter(getActivity());
-        countriesSpinner.setAdapter(countriesAdapter.getAdapter());
+
+        // Configura titulo del toolbar
+        switch( this.data.get(1) ){
+            case "create":
+                ForeignExchange.setupToolbarText(R.string.create_travel_itinerary_title);
+                countriesAdapter.removeCountry("Colombia");
+                countriesSpinner.setAdapter(countriesAdapter.getAdapter());
+                break;
+            case "update":
+                ForeignExchange.setupToolbarText(R.string.update_travel_itinerary_title);
+                fileTravelButton.setText(R.string.updateTravelItinerary_btn_text);
+                countriesSpinner.setAdapter(countriesAdapter.getAdapter());
+
+                ArrayList<String> countriesSpinnerArray = countriesAdapter.getCountriesArray();
+                for( String country: this.data ){
+                    if( countriesSpinnerArray.contains(country) ){
+                        countriesListView.setAdapter(selectCountryAdapter.getAdapter(country,true));
+                    }
+                }
+                break;
+        }// Fin del switch
 
         return travelItineraryLayout;
     }
@@ -152,8 +179,18 @@ public class FragmentTravelItinerary extends Fragment {
                 }
 
                 if( fileCreate ){
-                    // Mensaje de aviso al usuario
-                    setupMessageToast(R.string.travel_itinerary_created);
+
+                    // Configura titulo del toolbar
+                    switch( data.get(1) ){
+                        case "create":
+                            // Mensaje de aviso al usuario
+                            setupMessageToast(R.string.travel_itinerary_created);
+                            break;
+                        case "update":
+                            // Mensaje de aviso al usuario
+                            setupMessageToast(R.string.travel_itinerary_update);
+                            break;
+                    }// Fin del switch
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -162,7 +199,15 @@ public class FragmentTravelItinerary extends Fragment {
                             if( messageToast.getView().isShown() ){
                                 handler.postDelayed(this, 1000);
                             }else{
-                                launchTransaction("B");
+                                // Configura titulo del toolbar
+                                switch( data.get(1) ){
+                                    case "create":
+                                        launchTransaction("B");
+                                        break;
+                                    case "update":
+                                        launchTransaction("F");
+                                        break;
+                                }// Fin del switch
                             }
                         }
                     },1000);
@@ -177,7 +222,15 @@ public class FragmentTravelItinerary extends Fragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchTransaction("A");
+                // Configura titulo del toolbar
+                switch( data.get(1) ){
+                    case "create":
+                        launchTransaction("A");
+                        break;
+                    case "update":
+                        launchTransaction("B");
+                        break;
+                }// Fin del switch
             }
         });
 
@@ -187,8 +240,28 @@ public class FragmentTravelItinerary extends Fragment {
      * correspondiente parametro.
      */
     private void launchTransaction( String dialog ){
+
+        ArrayList<String> data = new ArrayList<>();
+
+        // Identifica el dialogo a crear.
+        switch( dialog ){
+            case "A":
+                data.add(dialog);
+                data.add("create");
+                break;
+            case "B":
+                data.add(dialog);
+                data.add("update");
+                selectedCountryArray = selectCountryAdapter.getCountriesArray();
+                for( String value: selectedCountryArray ){
+                    data.add(value);
+                }
+                break;
+        }// Fin del switch
+
         Bundle args = new Bundle();
-        args.putString("callDialog",dialog);
+        args.putStringArrayList("data",data);
+
         Fragment welcomeFragment  = ForeignExchange.getWelcomeFragment();
         welcomeFragment.setArguments(args);
         FragmentToTransaction.commit( ForeignExchange.getActivityMain(), welcomeFragment );
@@ -205,4 +278,4 @@ public class FragmentTravelItinerary extends Fragment {
         messageToast.show();
     }
 
-}
+}// Fin de la clase

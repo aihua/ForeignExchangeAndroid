@@ -6,18 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 public class FragmentWelcome extends Fragment {
 
     private View welcomeLayout;
-    private String callDialog;
+    private ArrayList<String> data;
 
+    // Obtengo parametros pasados al fragment.
     @Override
     public void onCreate( Bundle bundle ) {
         super.onCreate(bundle);
         if( getArguments() == null ){
-            this.callDialog = "A";
+            this.data.add("A");
+            this.data.add("create");
         }else{
-            this.callDialog = getArguments().getString("callDialog");
+            this.data = getArguments().getStringArrayList("data");
         }
     }
 
@@ -33,7 +37,7 @@ public class FragmentWelcome extends Fragment {
 
         // Ejecuta y verifica el progress Bar
         ForeignExchange.runProgBar();
-        ForeignExchange.setupVerifyProgBar( this.callDialog );
+        ForeignExchange.setupVerifyProgBar( this.data );
 
         return welcomeLayout;
     }

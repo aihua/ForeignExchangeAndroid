@@ -8,10 +8,12 @@ public class CountriesToAdapter {
 
     private Activity activity;
     private ArrayAdapter<CharSequence> countriesAdapter;
+    private ArrayList<String> countriesArray;
 
     /* Metodo constructor de la clase */
     public CountriesToAdapter(Activity activity) {
         this.activity = activity;
+        this.countriesArray = getValueOfArray();
         this.countriesAdapter = getSetupAdapter();
     }
 
@@ -20,7 +22,7 @@ public class CountriesToAdapter {
 
         return new ArrayAdapter(this.activity,
                                 android.R.layout.select_dialog_item,
-                                getValueOfArray());
+                                this.countriesArray);
     }
 
     /* Metodo que se encarga de obtener la lista de opciones
@@ -29,7 +31,7 @@ public class CountriesToAdapter {
     private ArrayList<String> getValueOfArray(){
 
         String[] optionsArray  = this.activity.getResources().getStringArray(R.array.countries);
-        ArrayList<String> countriesArray  = new ArrayList<>();
+        countriesArray  = new ArrayList<>();
 
         // Itera los valores de la array
         for( String obj: optionsArray ){
@@ -42,6 +44,20 @@ public class CountriesToAdapter {
         }
 
         return countriesArray;
+    }
+
+    /* Metodo que elimina un elemento del arreglo
+     * de paises que estaran en el spinner.
+     */
+    public void removeCountry( String country ){
+        this.countriesArray.remove(country);
+    }
+
+    /* Metodo que obtiene el arreglo de paises que se
+     * encuentran en el combo del diseño.
+     */
+    public ArrayList<String> getCountriesArray(){
+        return this.countriesArray;
     }
 
     /* Metodo que obtiene el adaptador de paises. */

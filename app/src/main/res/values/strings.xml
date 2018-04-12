@@ -4,6 +4,7 @@
     <string name="welcome_title">Welcome</string>
     <string name="welcome_label">You are in Colombia</string>
     <string name="create_travel_itinerary_title">Travel Itinerary</string>
+    <string name="update_travel_itinerary_title">Update Travel Itinerary</string>
     <string name="youAreIn_label">You are in</string>
     <string name="amount_label">Amount</string>
     <string name="noTravelItinerary_title">No Travel Itinerary</string>
@@ -21,12 +22,14 @@
     <string name="formatDate_label">DD-MMM-YYYY</string>
     <string name="countriesVisting_label">Countries Visting</string>
     <string name="fileTravelItinerary_btn_text">File Travel Itinerary</string>
+    <string name="updateTravelItinerary_btn_text">Update Travel Itinerary</string>
     <string name="cancel_btn_text">Cancel</string>
     <string name="country_selected_exist_Text">The selected country is already on the travel itinerary list. Please select a different country.</string>
     <string name="country_no_selected_list_Text">Please select a country from the travel itinerary list to remove.</string>
     <string name="country_select_Text">Please select a country.</string>
     <string name="data_required_Text">Please enter all the information required to complete the travel itinerary.</string>
     <string name="travel_itinerary_created">Your travel itinerary has been filed.</string>
+    <string name="travel_itinerary_update">Your travel itinerary has been updated.</string>
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>

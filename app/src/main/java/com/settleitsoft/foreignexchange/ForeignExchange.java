@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ForeignExchange extends AppCompatActivity {
 
     private static Fragment welcomeFragment, travelItineraryFragment;
@@ -85,13 +87,13 @@ public class ForeignExchange extends AppCompatActivity {
     /* Funcion que se encarga de configurar la verificacion
      * del estado del progress bar.
      */
-    public static void setupVerifyProgBar( final String dialog  ){
+    public static void setupVerifyProgBar( final ArrayList<String> data  ){
         checkProgBarHandler = new Handler();
         checkProgBarHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if( circularProgBar.getVisibility() == View.GONE ){
-                    TravelItineraryDialog.createDialog( foreignExchangeActivity, dialog );
+                    TravelItineraryDialog.createDialog( foreignExchangeActivity, data );
                 }else{
                     checkProgBarHandler.postDelayed(this, 1000);
                 }
