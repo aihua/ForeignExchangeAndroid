@@ -18,6 +18,7 @@ public class FragmentWelcome extends Fragment {
     public void onCreate( Bundle bundle ) {
         super.onCreate(bundle);
         if( getArguments() == null ){
+            this.data = new ArrayList<>();
             this.data.add("A");
             this.data.add("create");
         }else{

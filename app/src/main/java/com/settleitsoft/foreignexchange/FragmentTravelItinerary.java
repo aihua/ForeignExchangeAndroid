@@ -64,7 +64,7 @@ public class FragmentTravelItinerary extends Fragment {
         selectCountryAdapter = new SelectCountryToAdapter(getActivity());
 
         // Configura el objeto Toast para los mensajes de usuario.
-        messageToast = Toast.makeText(getActivity(),"", Toast.LENGTH_LONG );
+        messageToast = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
 
         // Configura los eventos de escucha
         listenerEventsSetup();
@@ -82,6 +82,8 @@ public class FragmentTravelItinerary extends Fragment {
             case "update":
                 ForeignExchange.setupToolbarText(R.string.update_travel_itinerary_title);
                 fileTravelButton.setText(R.string.updateTravelItinerary_btn_text);
+                fileTravelButton.setTextSize(15);
+                cancelButton.setTextSize(15);
                 countriesSpinner.setAdapter(countriesAdapter.getAdapter());
 
                 ArrayList<String> countriesSpinnerArray = countriesAdapter.getCountriesArray();

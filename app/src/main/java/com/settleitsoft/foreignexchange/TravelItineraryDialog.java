@@ -70,6 +70,8 @@ public class TravelItineraryDialog {
                                 createDialog( activity, data );
                                 break;
                             case "B":
+                                data.set(0,"F");
+                                createDialog( activity, data );
                                 break;
                         }// Fin del switch
                     }
