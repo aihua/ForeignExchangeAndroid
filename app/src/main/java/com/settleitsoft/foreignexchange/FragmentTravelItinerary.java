@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -97,11 +98,19 @@ public class FragmentTravelItinerary extends Fragment {
                         // Mensaje de aviso al usuario
                         setupMessageToast(R.string.country_selected_exist_Text);
                     }else{
-                        countriesListView.setAdapter(selectCountryAdapter.getAdapter(selectedCountry));
+                        countriesListView.setAdapter(selectCountryAdapter.getAdapter(selectedCountry,true));
                     }
                 }
             }
         });
+
+        countriesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
     }
 
     /* Configura los mensajes de aviso o alerta

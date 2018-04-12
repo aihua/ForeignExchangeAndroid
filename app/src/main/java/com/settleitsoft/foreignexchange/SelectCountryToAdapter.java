@@ -26,13 +26,17 @@ public class SelectCountryToAdapter {
     /* Metodo que se encarga de obtener el arreglo
      * de los paises seleccionados del spinner.
      */
-    private void selectedCountryArray( String country ){
-        this.countriesArray.add( country );
+    private void selectedCountryArray( String country, boolean isAdd ){
+        if( isAdd ){
+            this.countriesArray.add( country );
+        }else{
+            this.countriesArray.remove( country );
+        }
     }
 
     /* Metodo que obtiene el adaptador de paises. */
-    public ArrayAdapter<CharSequence> getAdapter( String country ){
-        selectedCountryArray(country);
+    public ArrayAdapter<CharSequence> getAdapter( String country, boolean isAdd ){
+        selectedCountryArray( country, isAdd );
         return getSetupAdapter();
     }
 
