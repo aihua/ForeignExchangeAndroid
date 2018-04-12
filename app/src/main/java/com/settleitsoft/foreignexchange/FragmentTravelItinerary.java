@@ -48,9 +48,9 @@ public class FragmentTravelItinerary extends Fragment {
         returnDatepicker     = new EmbeddedDatepicker(getActivity(), returnDate);
         selectCountryAdapter = new SelectCountryToAdapter(getActivity());
 
-        messageToast  = new Toast(getActivity());
-        messageToast.setDuration(Toast.LENGTH_LONG);
-        messageToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        // Configura el objeto Toast para los mensajes de usuario.
+        messageToast = Toast.makeText(getActivity(),"", Toast.LENGTH_LONG );
+       // messageToast.setGravity(Gravity.,0,0);
 
         // Configura los eventos de escucha
         listenerEventsSetup();
