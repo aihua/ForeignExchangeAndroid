@@ -15,6 +15,20 @@ public class SelectCountryToAdapter {
         this.countriesArray = new ArrayList<>();
     }
 
+    /* Metodo que se encarga de agregar un pais al arreglo
+     * de paises que se adjuntara en el ListView actual.
+     */
+    private void addSelectedCountryArray( String country ){
+        this.countriesArray.add( country );
+    }
+
+    /* Metodo que se encarga de eliminar un pais del arreglo
+     * de paises que se encuentra en el ListView actual.
+     */
+    private void removeSelectedCountryArray( String country ){
+        this.countriesArray.remove( country );
+    }
+
     /* Metodo que se encarga de configurar el adapatador. */
     private ArrayAdapter<CharSequence> getSetupAdapter(){
 
@@ -23,20 +37,15 @@ public class SelectCountryToAdapter {
                 this.countriesArray);
     }
 
-    /* Metodo que se encarga de obtener el arreglo
-     * de los paises seleccionados del spinner.
-     */
-    private void selectedCountryArray( String country, boolean isAdd ){
-        if( isAdd ){
-            this.countriesArray.add( country );
-        }else{
-            this.countriesArray.remove( country );
-        }
-    }
-
     /* Metodo que obtiene el adaptador de paises. */
     public ArrayAdapter<CharSequence> getAdapter( String country, boolean isAdd ){
-        selectedCountryArray( country, isAdd );
+
+        if( isAdd ){
+            addSelectedCountryArray( country );
+        }else{
+            removeSelectedCountryArray( country );
+        }
+
         return getSetupAdapter();
     }
 

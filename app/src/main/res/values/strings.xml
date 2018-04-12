@@ -22,7 +22,8 @@
     <string name="fileTravelItinerary_btn_text">File Travel Itinerary</string>
     <string name="cancel_btn_text">Cancel</string>
     <string name="country_selected_exist_Text">The selected country is already on the travel itinerary list. Please select a different country.</string>
-    <string name="country_select_Text">Please select a country</string>
+    <string name="country_no_selected_list_Text">Please select a country from the travel itinerary list to remove.</string>
+    <string name="country_select_Text">Please select a country.</string>
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
