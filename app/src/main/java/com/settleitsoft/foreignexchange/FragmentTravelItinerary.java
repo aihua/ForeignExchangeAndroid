@@ -89,7 +89,7 @@ public class FragmentTravelItinerary extends Fragment {
             case "update":
                 ForeignExchange.setupToolbarText(R.string.update_travel_itinerary_title);
 
-                if( String.valueOf(departureDate.getText()).equals(formatDate) ){
+                if( this.data.size() == 2  ){
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.UK);
                     Calendar calendar = Calendar.getInstance();
