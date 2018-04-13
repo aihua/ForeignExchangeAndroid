@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class ForeignExchange extends AppCompatActivity {
 
-    private static Fragment welcomeFragment, travelItineraryFragment;
+    private static Fragment welcomeFragment, travelItineraryFragment, amountEntryFragment;
     private static ProgressBar circularProgBar;
     private static Handler checkProgBarHandler;
     private static Activity foreignExchangeActivity;
@@ -42,6 +42,7 @@ public class ForeignExchange extends AppCompatActivity {
         // Obitiene Fragmentos
         welcomeFragment         = new FragmentWelcome();            // Welcome
         travelItineraryFragment = new FragmentTravelItinerary();    // Travel Itinerary
+        amountEntryFragment     = new FragmentAmountEntry();        // Amount Entry
 
         // Incrustar Fragmento
         FragmentToTransaction.commit( foreignExchangeActivity, welcomeFragment );
@@ -63,6 +64,11 @@ public class ForeignExchange extends AppCompatActivity {
     /* Obtiene el fragmento del diseño Welcome */
     public static Fragment getWelcomeFragment(){
         return welcomeFragment;
+    }
+
+    /* Obtiene el fragmento del diseño Amount Entry */
+    public static Fragment getAmountEntryFragment(){
+        return amountEntryFragment;
     }
 
     /* Obtiene el fragmento del diseño Travel Itinerary */

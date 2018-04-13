@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Foreign Exchange</string>
     <string name="action_settings">Settings</string>
+    <string name="foreingExchange_title">Foreign Exchange Rates</string>
     <string name="welcome_title">Welcome</string>
     <string name="welcome_label">You are in Colombia</string>
     <string name="create_travel_itinerary_title">Travel Itinerary</string>
@@ -30,15 +31,15 @@
     <string name="data_required_Text">Please enter all the information required to complete the travel itinerary.</string>
     <string name="travel_itinerary_created">Your travel itinerary has been filed.</string>
     <string name="travel_itinerary_update">Your travel itinerary has been updated.</string>
-
-    <!-- Seccion Arreglos -->
-    <string name="country_select_prompt">Select Country</string>
     <string name="total_amount_label">Total Amount</string>
     <string name="calculate_btn_text">Calculate Amount</string>
     <string name="exchange_country_label">From #country# to United States</string>
     <string name="source_country_label">#country# - #code#</string>
     <string name="convertion_rate_label">1 #code# = #amount# Dollar</string>
     <string name="conversion_amount_label">Conversion Amount</string>
+
+    <!-- Seccion Arreglos -->
+    <string name="country_select_prompt">Select Country</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>

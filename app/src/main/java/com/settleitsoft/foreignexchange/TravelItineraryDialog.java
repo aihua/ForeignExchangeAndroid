@@ -72,7 +72,13 @@ public class TravelItineraryDialog {
                                 break;
                             case "B":
                                 data.set(0,"F");
-                                createDialog( activity, data );
+                                data.set(1,"ForeignExchange");
+
+                                Bundle args = new Bundle();
+                                args.putStringArrayList("data", data );
+
+                                Fragment emountEntryFragment = ForeignExchange.getAmountEntryFragment();
+                                FragmentToTransaction.commit(activity, emountEntryFragment);
                                 break;
                         }// Fin del switch
                     }
