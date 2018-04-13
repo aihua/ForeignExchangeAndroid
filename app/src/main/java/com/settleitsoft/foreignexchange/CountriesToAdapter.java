@@ -43,7 +43,7 @@ public class CountriesToAdapter {
                 countriesArray.add(keyValue[0]);
             }else{
                 countriesArray.add(keyValue[1]);
-                isoCountries.put(keyValue[0],keyValue[1]);
+                isoCountries.put(keyValue[1], keyValue[0]);
             }
         }
 
@@ -53,7 +53,7 @@ public class CountriesToAdapter {
     /* Metodo que obtiene un objeto clave-valor, con el
      * codigo ISO y el pais correspondiente.
      */
-    public HashMap<String,String> getISOCountry(){
+    public HashMap<String,String> getISOCountries(){
         return isoCountries;
     }
 

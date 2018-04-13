@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FragmentAmountEntry extends Fragment {
 
@@ -154,15 +155,28 @@ public class FragmentAmountEntry extends Fragment {
                 }
 
                 if( calculateForeign ){
-                    FragDialogAmountCalculated fragDialogAmountCalculated = new FragDialogAmountCalculated();
-                    fragDialogAmountCalculated.show(getFragmentManager(),"FragDialogAmountCalculated");
+                    // Contiene un arreglo con los ISOs de los paises
+                    HashMap<String,String> iSOCountries = countriesAdapter.getISOCountries();
+
+                    // Crea el arreglo con los datos ingresados
+                    data = new ArrayList<>();
+                    data.add(iSOCountries.get(selectedCountry));
+                    data.add(selectedCountry);
+                    data.add(totalAmountEdit.getText().toString());
+
+                    // Crea objeto clave-valor para argumentos
+                    Bundle args = new Bundle();
+                    args.putStringArrayList( "data",data );
+
+                    FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
+                    fragDialog.setArguments(args);
+                    fragDialog.show(getFragmentManager(),"FragDialogAmountCalculated");
                 }else{
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.data_required_Text);
                 }
             }
         });
-
     }
 
     /* Metodo que se encarga de calcular el monto
