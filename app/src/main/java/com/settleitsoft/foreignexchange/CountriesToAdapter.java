@@ -3,12 +3,14 @@ package com.settleitsoft.foreignexchange;
 import android.app.Activity;
 import android.widget.ArrayAdapter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CountriesToAdapter {
 
     private Activity activity;
     private ArrayAdapter<CharSequence> countriesAdapter;
     private ArrayList<String> countriesArray;
+    private HashMap<String,String> isoCountries;
 
     /* Metodo constructor de la clase */
     public CountriesToAdapter(Activity activity) {
@@ -32,6 +34,7 @@ public class CountriesToAdapter {
 
         String[] optionsArray  = this.activity.getResources().getStringArray(R.array.countries);
         countriesArray  = new ArrayList<>();
+        isoCountries    = new HashMap<>();
 
         // Itera los valores de la array
         for( String obj: optionsArray ){
@@ -40,10 +43,18 @@ public class CountriesToAdapter {
                 countriesArray.add(keyValue[0]);
             }else{
                 countriesArray.add(keyValue[1]);
+                isoCountries.put(keyValue[0],keyValue[1]);
             }
         }
 
         return countriesArray;
+    }
+
+    /* Metodo que obtiene un objeto clave-valor, con el
+     * codigo ISO y el pais correspondiente.
+     */
+    public HashMap<String,String> getISOCountry(){
+        return isoCountries;
     }
 
     /* Metodo que elimina un elemento del arreglo

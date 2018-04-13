@@ -179,7 +179,7 @@ public class FragmentTravelItinerary extends Fragment {
             }
         });
 
-        // Declara el evento de escucha del item countrie_add_Button countries_List
+        // Declara el evento de escucha del item countries_List
         countriesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

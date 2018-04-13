@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/youAreIn_Text"
-        android:layout_width="141dp"
+        android:layout_width="85dp"
         android:layout_height="28dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
@@ -40,8 +40,8 @@
 
     <TextView
         android:id="@+id/amount_Text"
-        android:layout_width="141dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="41dp"
@@ -56,15 +56,15 @@
     <EditText
         android:id="@+id/amount_Edit"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="42dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:focusable="false"
         android:inputType="number"
+        android:maxLength="10"
         android:textAlignment="center"
         android:textSize="@dimen/spinner_label_size"
         app:layout_constraintEnd_toStartOf="@+id/amount_add_Button"
@@ -76,16 +76,32 @@
         android:id="@+id/amount_add_Button"
         android:layout_width="0dp"
         android:layout_height="34dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorAddFloatButton"
+        app:layout_constraintEnd_toStartOf="@+id/amount_remove_Button"
+        app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/amount_remove_Button"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="32dp"
         android:clickable="true"
         android:scaleType="center"
         android:tint="@color/colorIconFloatButton"
-        app:backgroundTint="@color/colorAddFloatButton"
+        app:backgroundTint="@color/colorRemoveFloatButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
-        app:srcCompat="@android:drawable/ic_input_add"
+        app:srcCompat="@android:drawable/ic_delete"
         tools:ignore="MissingConstraints" />
 
     <ListView
@@ -97,6 +113,8 @@
         android:layout_marginRight="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="33dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/colorListSelector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_Edit" />
