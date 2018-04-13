@@ -107,8 +107,8 @@ public class FragmentTravelItinerary extends Fragment {
                     formattedDate = simpleDateFormat.format(calendar.getTime());
                     returnDate.setText(formattedDate);
 
-                    this.data.add("Ecuador");
-                    this.data.add("Peru");
+                    this.data.add("Brazil");
+                    this.data.add("Chile");
                 }
 
                 fileTravelButton.setText(R.string.updateTravelItinerary_btn_text);
