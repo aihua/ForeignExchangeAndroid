@@ -67,6 +67,7 @@ public class TravelItineraryDialog {
                         switch(callDialog){
                             case "A":
                                 data.set(0,"B");
+                                data.set(1,"update");
                                 createDialog( activity, data );
                                 break;
                             case "B":

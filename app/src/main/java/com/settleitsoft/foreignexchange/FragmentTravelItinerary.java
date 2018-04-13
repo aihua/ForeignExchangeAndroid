@@ -13,7 +13,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class FragmentTravelItinerary extends Fragment {
 
@@ -30,6 +34,7 @@ public class FragmentTravelItinerary extends Fragment {
     private Toast messageToast;
     private ListView countriesListView;
     private ArrayList<String> data;
+    private String formatDate;
 
     // Obtengo parametros pasados al fragment.
     @Override
@@ -57,6 +62,7 @@ public class FragmentTravelItinerary extends Fragment {
         countriesListView     = travelItineraryLayout.findViewById(R.id.countries_List);
         fileTravelButton      = travelItineraryLayout.findViewById(R.id.fileTravelItinerary_Button);
         cancelButton          = travelItineraryLayout.findViewById(R.id.cancel_Button);
+        formatDate            = getResources().getString(R.string.formatDate_label);
 
         // Instancia los objetos necesarios para la correcta interaccion con el usuario
         departureDatepicker  = new EmbeddedDatepicker(getActivity(), departureDate);
@@ -68,6 +74,7 @@ public class FragmentTravelItinerary extends Fragment {
 
         // Configura los eventos de escucha
         listenerEventsSetup();
+
 
         // Configura la lista del combo paises
         countriesAdapter = new CountriesToAdapter(getActivity());
@@ -81,9 +88,25 @@ public class FragmentTravelItinerary extends Fragment {
                 break;
             case "update":
                 ForeignExchange.setupToolbarText(R.string.update_travel_itinerary_title);
+
+                if( String.valueOf(departureDate.getText()).equals(formatDate) ){
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.UK);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.DAY_OF_MONTH, 2);
+
+                    String formattedDate = simpleDateFormat.format(calendar.getTime());
+                    departureDate.setText(formattedDate);
+
+                    calendar.add(Calendar.DAY_OF_MONTH, 15);
+                    formattedDate = simpleDateFormat.format(calendar.getTime());
+                    returnDate.setText(formattedDate);
+
+                    this.data.add("Ecuador");
+                    this.data.add("Peru");
+                }
+
                 fileTravelButton.setText(R.string.updateTravelItinerary_btn_text);
-                fileTravelButton.setTextSize(15);
-                cancelButton.setTextSize(15);
                 countriesSpinner.setAdapter(countriesAdapter.getAdapter());
 
                 ArrayList<String> countriesSpinnerArray = countriesAdapter.getCountriesArray();
@@ -166,9 +189,8 @@ public class FragmentTravelItinerary extends Fragment {
             @Override
             public void onClick(View view) {
 
-                boolean fileCreate      = true;
-                selectedCountryArray    = selectCountryAdapter.getCountriesArray();
-                String formatDate       = getResources().getString(R.string.formatDate_label);
+                boolean fileCreate   = true;
+                selectedCountryArray = selectCountryAdapter.getCountriesArray();
 
                 if( String.valueOf(departureDate.getText()).equals(formatDate) ){
                     fileCreate = false;
