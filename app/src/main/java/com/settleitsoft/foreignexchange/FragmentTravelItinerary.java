@@ -68,16 +68,21 @@ public class FragmentTravelItinerary extends Fragment {
         departureDatepicker  = new EmbeddedDatepicker(getActivity(), departureDate);
         returnDatepicker     = new EmbeddedDatepicker(getActivity(), returnDate);
         selectCountryAdapter = new SelectCountryToAdapter(getActivity());
-
-        // Configura el objeto Toast para los mensajes de usuario.
-        messageToast = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
+        countriesAdapter     = new CountriesToAdapter(getActivity());
+        messageToast         = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
 
         // Configura los eventos de escucha
         listenerEventsSetup();
 
+        return travelItineraryLayout;
+    }
 
-        // Configura la lista del combo paises
-        countriesAdapter = new CountriesToAdapter(getActivity());
+    /* Soluciona que los items del diseño se puedan refrescar
+     * de forma correcta con el nuevo valor.
+     */
+    @Override
+    public void onResume(){
+        super.onResume();
 
         // Configura titulo del toolbar
         switch( this.data.get(1) ){
@@ -117,8 +122,6 @@ public class FragmentTravelItinerary extends Fragment {
                 }
                 break;
         }// Fin del switch
-
-        return travelItineraryLayout;
     }
 
     /* Metodo que configura los eventos de escucha de los
