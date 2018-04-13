@@ -147,6 +147,26 @@
         app:layout_constraintTop_toBottomOf="@+id/destination_country_Text"
         tools:ignore="MissingConstraints,UnknownId" />
 
+    <Button
+        android:id="@+id/calculate_another_Button"
+        style="@style/Buttons"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/calculate_another_btn_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversion_amount_Text"
+        app:layout_constraintVertical_bias="0.681"
+        tools:ignore="MissingConstraints" />
+
 
 
 </android.support.constraint.ConstraintLayout>

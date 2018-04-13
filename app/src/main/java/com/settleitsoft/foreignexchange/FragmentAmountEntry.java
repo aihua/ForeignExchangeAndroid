@@ -1,7 +1,9 @@
 package com.settleitsoft.foreignexchange;
 
+import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class FragmentAmountEntry extends Fragment {
@@ -153,7 +154,8 @@ public class FragmentAmountEntry extends Fragment {
                 }
 
                 if( calculateForeign ){
-
+                    FragDialogAmountCalculated fragDialogAmountCalculated = new FragDialogAmountCalculated();
+                    fragDialogAmountCalculated.show(getFragmentManager(),"FragDialogAmountCalculated");
                 }else{
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.data_required_Text);

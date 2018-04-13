@@ -42,6 +42,7 @@
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
     <string name="amount_empty_Text">Please enter a amount.</string>
+    <string name="calculate_another_btn_text">Calculate Another Amount</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>
