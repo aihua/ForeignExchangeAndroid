@@ -26,8 +26,6 @@ public class TravelItineraryDialog {
                 titleId = R.string.countryNoTravelItinerary_title;
                 textId  = R.string.countryNoTravelItinerary_text;
                 break;
-            case "F":
-                break;
         }// Fin del switch
 
         // Instancia el objeto dialogo

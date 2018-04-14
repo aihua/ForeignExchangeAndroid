@@ -284,12 +284,16 @@ public class FragmentTravelItinerary extends Fragment {
                     data.add(value);
                 }
                 break;
+            case "F":
+                data.add(dialog);
+                data.add("ForeignExchange");
+                break;
         }// Fin del switch
 
         Bundle args = new Bundle();
         args.putStringArrayList("data",data);
 
-        Fragment welcomeFragment  = ForeignExchange.getWelcomeFragment();
+        Fragment welcomeFragment = ForeignExchange.getWelcomeFragment();
         welcomeFragment.setArguments(args);
         FragmentToTransaction.commit( ForeignExchange.getActivityMain(), welcomeFragment );
     }

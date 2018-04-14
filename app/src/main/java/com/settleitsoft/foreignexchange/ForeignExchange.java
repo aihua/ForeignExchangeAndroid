@@ -119,7 +119,16 @@ public class ForeignExchange extends AppCompatActivity {
             @Override
             public void run() {
                 if( circularProgBar.getVisibility() == View.GONE ){
-                    TravelItineraryDialog.createDialog( foreignExchangeActivity, data );
+                    // Este paso no requiere dialogo
+                    if( data.get(0).equals("F") ){
+                        Bundle args = new Bundle();
+                        args.putStringArrayList("data",data);
+                        Fragment amountEntryFragment = ForeignExchange.getAmountEntryFragment();
+                        amountEntryFragment.setArguments(args);
+                        FragmentToTransaction.commit( ForeignExchange.getActivityMain(), amountEntryFragment );
+                    }else{
+                        TravelItineraryDialog.createDialog( foreignExchangeActivity, data );
+                    }
                 }else{
                     checkProgBarHandler.postDelayed(this, 1000);
                 }
