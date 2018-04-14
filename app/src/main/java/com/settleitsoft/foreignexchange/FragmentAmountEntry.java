@@ -249,10 +249,11 @@ public class FragmentAmountEntry extends Fragment {
 
         }catch (JSONException e) {
 
+            e.printStackTrace();
+        }catch ( Exception e ){
+
             // Mensaje de aviso al usuario
             setupMessageToast(R.string.error_request_Text);
-
-            e.printStackTrace();
         }
     }
 
