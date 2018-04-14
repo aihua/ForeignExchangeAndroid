@@ -192,6 +192,7 @@ public class FragmentTravelItinerary extends Fragment {
             @Override
             public void onClick(View view) {
 
+                String  typeMsg      = "A";
                 boolean fileCreate   = true;
                 selectedCountryArray = selectCountryAdapter.getCountriesArray();
 
@@ -203,6 +204,12 @@ public class FragmentTravelItinerary extends Fragment {
                 }else
                 if( selectedCountryArray.isEmpty() ){
                     fileCreate = false;
+                }else
+                if( data.get(1) == "update" ){
+                    if( ! selectedCountryArray.contains("Colombia") ){
+                        typeMsg = "B";
+                        fileCreate = false;
+                    }
                 }
 
                 if( fileCreate ){
@@ -239,8 +246,17 @@ public class FragmentTravelItinerary extends Fragment {
                         }
                     },1000);
                 }else{
-                    // Mensaje de aviso al usuario
-                    setupMessageToast(R.string.data_required_Text);
+                    // Identifica el tipo de mensaje
+                    switch (typeMsg){
+                        case "A":
+                            // Mensaje de aviso al usuario
+                            setupMessageToast(R.string.data_required_Text);
+                            break;
+                        case "B":
+                            // Mensaje de aviso al usuario
+                            setupMessageToast(R.string.colombia_required_Text);
+                            break;
+                    }// Fin del switch
                 }
             }
         });
