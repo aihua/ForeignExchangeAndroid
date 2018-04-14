@@ -21,6 +21,7 @@ public class FragDialogAmountCalculated extends DialogFragment {
     private EditText totalAmountEditText, conversionAmountEditText;
     private String textValueContainer;
     private HashMap<String,String> ISOcoins;
+    private FragDialogAmountCalculated fragDialog;
 
     // Obtengo parametros pasados al fragment.
     @Override
@@ -38,9 +39,10 @@ public class FragDialogAmountCalculated extends DialogFragment {
 
         // Obtiene items del diseño
         amountCalculatedLayout  = inflater.inflate(R.layout.fragment_amount_calculated, container, false);
+        fragDialog = this;
 
         // Obtiene items del diseño
-        calculateAmountButton    = amountCalculatedLayout.findViewById(R.id.calculate_Button);
+        calculateAmountButton    = amountCalculatedLayout.findViewById(R.id.calculate_another_Button);
         exchangeCountryTextView  = amountCalculatedLayout.findViewById(R.id.exchange_country_Text);
         conversionRateTextView   = amountCalculatedLayout.findViewById(R.id.conversion_rate_Text);
         sourceCountryTextView    = amountCalculatedLayout.findViewById(R.id.source_country_Text);
@@ -87,7 +89,7 @@ public class FragDialogAmountCalculated extends DialogFragment {
         calculateAmountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                fragDialog.getDialog().dismiss();
             }
         });
     }
