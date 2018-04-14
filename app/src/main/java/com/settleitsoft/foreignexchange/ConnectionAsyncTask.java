@@ -27,6 +27,8 @@ public class ConnectionAsyncTask {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            ForeignExchange.setClikeableProgBar(true);
             circularProgBar = ForeignExchange.getCircularProgBar();
             circularProgBar.setVisibility(View.VISIBLE);
         }
@@ -43,6 +45,7 @@ public class ConnectionAsyncTask {
 
             try {
 
+                ForeignExchange.setClikeableProgBar(false);
                 circularProgBar.setVisibility(View.GONE);
                 respRequest = new JSONObject(respJson);
                 FragmentAmountEntry.goToFragmentDialog(respRequest);
