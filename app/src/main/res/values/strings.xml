@@ -40,10 +40,11 @@
     <string name="amount_no_selected_list_Text">Please select a amount from the list to remove.</string>
     <string name="amount_empty_Text">Please enter a amount.</string>
     <string name="calculate_another_btn_text">Calculate Another Amount</string>
+    <string name="destination_country_label">United States - USD</string>
+    <string name="error_request_Text">Sorry, there was a problem with the request, please try again or later.</string>
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
-    <string name="destination_country_label">United States - USD</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>

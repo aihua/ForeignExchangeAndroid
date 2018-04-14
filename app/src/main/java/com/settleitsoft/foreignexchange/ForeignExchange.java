@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -76,8 +75,17 @@ public class ForeignExchange extends AppCompatActivity {
         return travelItineraryFragment;
     }
 
-    /* Funcion que se encarga de ejecutar el
-     * progress bar por un tiempo de 5 segundos
+    /* Obtiene el objeto Progress Bar de la actividad principal. */
+    public static ProgressBar getCircularProgBar(){
+        return circularProgBar;
+    }
+
+    /* Funcion que se encarga de ejecutar el progress
+     * bar por un tiempo de 5 segundos.
+     *
+     * NOTA:
+     * Este progreso es no esta ligado a ninguna
+     * carga o proceso que este haciendo la aplicacion.
      */
     public static void runProgBar(){
         circularProgBar.setVisibility( View.VISIBLE );

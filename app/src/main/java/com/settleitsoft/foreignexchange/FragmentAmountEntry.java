@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,11 +31,16 @@ public class FragmentAmountEntry extends Fragment {
     private ListView amountsListView;
     private AmountEntryToAdapter amountsEntryAdapter;
     private FloatingActionButton amountAddButton, amountRemoveButton;
-    private EditText amountEdit, totalAmountEdit;
+    private EditText amountEdit;
     private Integer entryAmount, selectedAmountList;
-    private Toast messageToast;
     private Button calculateButton;
-    private String selectedCountry, defaultValueSpinner;
+    private String defaultValueSpinner;
+
+    private static HashMap<String,String> iSOCountries;
+    private static String selectedCountry;
+    private static EditText totalAmountEdit;
+    private static FragmentManager fragmentManager;
+    private static Toast messageToast;
 
     // Obtengo parametros pasados al fragment.
     @Override
@@ -66,6 +75,7 @@ public class FragmentAmountEntry extends Fragment {
         countriesAdapter      = new CountriesToAdapter(getActivity());
         amountsEntryAdapter   = new AmountEntryToAdapter(getActivity());
         messageToast          = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
+        fragmentManager       = getFragmentManager();
 
         // Configura Pais
         countriesSpinner.setAdapter(countriesAdapter.getAdapter());
@@ -155,22 +165,20 @@ public class FragmentAmountEntry extends Fragment {
                 }
 
                 if( calculateForeign ){
-                    // Contiene un arreglo con los ISOs de los paises
-                    HashMap<String,String> iSOCountries = countriesAdapter.getISOCountries();
 
-                    // Crea el arreglo con los datos ingresados
-                    data = new ArrayList<>();
-                    data.add(iSOCountries.get(selectedCountry));
-                    data.add(selectedCountry);
-                    data.add(totalAmountEdit.getText().toString());
+                    iSOCountries = countriesAdapter.getISOCountries();
 
-                    // Crea objeto clave-valor para argumentos
-                    Bundle args = new Bundle();
-                    args.putStringArrayList( "data",data );
+                    try {
 
-                    FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
-                    fragDialog.setArguments(args);
-                    fragDialog.show(getFragmentManager(),"FragDialogAmountCalculated");
+                        JSONObject params = new JSONObject();
+
+                        params.put("country", iSOCountries.get(selectedCountry));
+                        params.put("amount", totalAmountEdit.getText().toString());
+                        ConnectionAsyncTask.request( params );
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }else{
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.data_required_Text);
@@ -195,14 +203,60 @@ public class FragmentAmountEntry extends Fragment {
     }
 
     /* Configura los mensajes de aviso o alerta
-     * para el usuario */
-    private void setupMessageToast( int idString ){
+     * para el usuario.
+     */
+    private static void setupMessageToast( int idString ){
 
         if( messageToast.getView().isShown() ){
             messageToast.cancel();
         }
         messageToast.setText(idString);
         messageToast.show();
+    }
+
+    /* Metodo que activa el fragmentDialog con los resultados
+     * de la peticion (Divisa).
+     * NOTA esta funcion es invocada en el metodo onPostExecute
+     * de la calse Async Task sirve como Callback.
+     */
+    public static void goToFragmentDialog( JSONObject respRequest ){
+
+        try {
+
+            String statusCode = respRequest.getString("code");
+
+            switch( statusCode ){
+                case "200":
+                    String conversionRate   = respRequest.getString("conversionRate");
+                    String result           = respRequest.getString("result");
+
+                    // Crea el arreglo con los datos ingresados
+                    ArrayList<String> data = new ArrayList<>();
+                    data.add(iSOCountries.get(selectedCountry));        //ISO
+                    data.add(selectedCountry);                          //Ciudad
+                    data.add(totalAmountEdit.getText().toString());     //Cantidad
+                    data.add(conversionRate);                           //ConversionRate
+                    data.add(result);                                   //Cantidad resultante
+
+                    // Crea objeto clave-valor para argumentos
+                    Bundle args = new Bundle();
+                    args.putStringArrayList( "data",data );
+
+                    FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
+                    fragDialog.setArguments(args);
+                    fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
+                    break;
+                default:
+                    throw new RuntimeException();
+            }// fin del switch
+
+        }catch (JSONException e) {
+
+            // Mensaje de aviso al usuario
+            setupMessageToast(R.string.error_request_Text);
+
+            e.printStackTrace();
+        }
     }
 
 }// Fin de la clase
