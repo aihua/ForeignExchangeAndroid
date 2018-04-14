@@ -34,8 +34,8 @@
     <string name="total_amount_label">Total Amount</string>
     <string name="calculate_btn_text">Calculate Amount</string>
     <string name="exchange_country_label">From #country# to United States</string>
-    <string name="source_country_label">#country# - #code#</string>
-    <string name="convertion_rate_label">1 #code# = #amount# USD</string>
+    <string name="source_country_label">#country# - #coin#</string>
+    <string name="convertion_rate_label">1 #coin# = #amount# USD</string>
     <string name="conversion_amount_label">Conversion Amount</string>
     <string name="amount_no_selected_list_Text">Please select a amount from the list to remove.</string>
     <string name="amount_empty_Text">Please enter a amount.</string>
@@ -43,6 +43,7 @@
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
+    <string name="destination_country_label">United States - USD</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>
@@ -53,7 +54,7 @@
         <item>404,Kenia</item>
     </string-array>
 
-    <string-array name="countriesISO">
+    <string-array name="ISO_coins">
         <item>68,Bs</item>
         <item>76,R$</item>
         <item>152,CLP</item>

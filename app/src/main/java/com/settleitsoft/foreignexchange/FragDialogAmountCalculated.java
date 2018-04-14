@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FragDialogAmountCalculated extends DialogFragment {
 
@@ -18,7 +18,7 @@ public class FragDialogAmountCalculated extends DialogFragment {
     private Button calculateAmountButton;
     private TextView exchangeCountryTextView, conversionRateTextView, sourceCountryTextView;
     private String textValueContainer;
-    private String[] countriesISO;
+    private HashMap<String,String> ISOcoins;
 
     // Obtengo parametros pasados al fragment.
     @Override
@@ -42,17 +42,18 @@ public class FragDialogAmountCalculated extends DialogFragment {
         exchangeCountryTextView = amountCalculatedLayout.findViewById(R.id.exchange_country_Text);
         conversionRateTextView  = amountCalculatedLayout.findViewById(R.id.conversion_rate_Text);
         sourceCountryTextView   = amountCalculatedLayout.findViewById(R.id.source_country_Text);
-        countriesISO            = getResources().getStringArray(R.array.countriesISO);
+        ISOcoins                = getISOcoinsHashMap();
 
         // Configura los textos con la informacion suministrada.
         textValueContainer = exchangeCountryTextView.getText().toString().replace("#country#", this.data.get(1));
         exchangeCountryTextView.setText(textValueContainer);
 
-        textValueContainer = conversionRateTextView.getText().toString().replace("#code#", this.data.get(0));
+        textValueContainer = conversionRateTextView.getText().toString().replace("#coin#", ISOcoins.get(this.data.get(0)));
+        textValueContainer = textValueContainer.replace("#amount#", "aqui va el convrtion rate");
         conversionRateTextView.setText(textValueContainer);
 
         textValueContainer = sourceCountryTextView.getText().toString().replace("#country#", this.data.get(1));
-        textValueContainer = textValueContainer.replace("#code#", this.data.get(0));
+        textValueContainer = textValueContainer.replace("#coin#", ISOcoins.get(this.data.get(0)));
         sourceCountryTextView.setText(textValueContainer);
 
         // Configura los eventos de escucha
@@ -83,4 +84,22 @@ public class FragDialogAmountCalculated extends DialogFragment {
 //            }
 //        });
     }
-}
+
+    /* Metodo que obtiene un arreglo clave-valor con los
+     * ISO de cada pais y la moneda correspondiente de
+     * de cada uno de ellos.
+     */
+    private HashMap<String,String> getISOcoinsHashMap(){
+
+        String [] objArray = getResources().getStringArray(R.array.ISO_coins);
+        HashMap<String,String> hashMap = new HashMap<>();
+
+        for( String obj: objArray ){
+            String[] keyValue = obj.split(",");
+            hashMap.put(keyValue[0], keyValue[1]);
+        }
+
+        return hashMap;
+    }
+
+}// Fin de la clase
