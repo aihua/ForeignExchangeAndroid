@@ -16,6 +16,9 @@ public class TravelItineraryDialog {
         int textId              = 0;
         final String callDialog = data.get(0);
 
+        // Configura punto de control actual de la App
+        ForeignExchange.setCheckPointApp(callDialog);
+
         // Identifica el dialogo a crear.
         switch(callDialog){
             case "A":

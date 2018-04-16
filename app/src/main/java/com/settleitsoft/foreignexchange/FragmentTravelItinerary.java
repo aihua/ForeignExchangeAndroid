@@ -88,6 +88,8 @@ public class FragmentTravelItinerary extends Fragment {
         switch( this.data.get(1) ){
             case "create":
                 ForeignExchange.setupToolbarText(R.string.create_travel_itinerary_title);
+                departureDate.setText(formatDate);
+                returnDate.setText(formatDate);
                 countriesAdapter.removeCountry("Colombia");
                 countriesSpinner.setAdapter(countriesAdapter.getAdapter());
                 break;

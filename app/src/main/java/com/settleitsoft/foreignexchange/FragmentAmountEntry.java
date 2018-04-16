@@ -54,6 +54,7 @@ public class FragmentAmountEntry extends Fragment {
                              Bundle savedInstanceState) {
         // Obtiene items del diseño
         amountEntryLayout  = inflater.inflate(R.layout.fragment_amount_entry, container, false);
+        ForeignExchange.setCheckPointApp("F");
 
         // Configura titulo del toolbar
         ForeignExchange.setupToolbarText(R.string.foreingExchange_title);

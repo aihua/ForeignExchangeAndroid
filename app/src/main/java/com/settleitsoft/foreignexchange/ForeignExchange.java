@@ -21,6 +21,7 @@ public class ForeignExchange extends AppCompatActivity {
     private static Activity foreignExchangeActivity;
     private static TextView toolbarTitle;
     private static ConstraintLayout layoutProgBar;
+    private static String currentCheckPoint;
     private Toolbar toolbar;
 
     @Override
@@ -29,7 +30,8 @@ public class ForeignExchange extends AppCompatActivity {
         setContentView(R.layout.activity_foreign_exchange);
 
         // Obtiene la actividad principal
-        foreignExchangeActivity = this;
+        foreignExchangeActivity = this;  // Actividad principal
+        currentCheckPoint       = "A";   // Punto de control inicial.
 
         // Obtiene los items del diseño
         toolbar         = findViewById(R.id.toolbar);
@@ -51,9 +53,7 @@ public class ForeignExchange extends AppCompatActivity {
 
     }// Fin de onCreate
 
-    /* Funcion que se encarga de configurar el
-     * texto toolbar general de la applicacion.
-     */
+    /* Configura el texto del toolbar de la applicacion. */
     public static void setupToolbarText( int id ){
         toolbarTitle.setText(id);
     }
@@ -86,6 +86,31 @@ public class ForeignExchange extends AppCompatActivity {
     /* Se encarga de bloquear y desbloquear el diseño mientra esta en carga. */
     public static void setClikeableProgBar( Boolean clickear ){
         layoutProgBar.setClickable(clickear);
+    }
+
+    /* Configura el punto de control actual de la aplicacion.*/
+    public static void setCheckPointApp( String checkPoint ){
+        currentCheckPoint = checkPoint;
+    }
+
+    /* Metodo Listener del evento Atras de la aplicacion . */
+    @Override
+    public void onBackPressed() {
+        // Indentifica el punto de control
+        switch( currentCheckPoint ){
+            case "A":
+            case "B":
+                // No realizar ninguna accion
+                break;
+            case "F":
+                // Inicia de nuevo
+                welcomeFragment.setArguments(null);
+                FragmentToTransaction.commit( foreignExchangeActivity, welcomeFragment );
+                break;
+            default:
+                super.onBackPressed();  // Invoca al método
+                break;
+        }// Fin del switch
     }
 
     /* Funcion que se encarga de ejecutar el progress
