@@ -25,14 +25,15 @@ public class FragmentAmountEntry extends Fragment {
     private ArrayList<Integer> selectedAmountsArray;
     private Spinner countriesSpinner;
     private CountriesToAdapter countriesAdapter;
-    private ListView amountsListView;
-    private AmountEntryToAdapter amountsEntryAdapter;
     private FloatingActionButton amountAddButton, amountRemoveButton;
     private EditText amountEdit;
-    private Integer entryAmount, selectedAmountList;
+    private Integer entryAmount;
+    private int selectedAmountList;
     private Button calculateButton;
     private String defaultValueSpinner;
 
+    private static AmountEntryToAdapter amountsEntryAdapter;
+    private static ListView amountsListView;
     private static HashMap<String,String> iSOCountries;
     private static String selectedCountry;
     private static EditText totalAmountEdit;
@@ -62,9 +63,9 @@ public class FragmentAmountEntry extends Fragment {
         // Obtiene items del diseño
         amountEdit            = amountEntryLayout.findViewById(R.id.amount_Edit);
         countriesSpinner      = amountEntryLayout.findViewById(R.id.countries_spinner);
-        amountsListView       = amountEntryLayout.findViewById(R.id.amounts_List);
         amountAddButton       = amountEntryLayout.findViewById(R.id.amount_add_Button);
         amountRemoveButton    = amountEntryLayout.findViewById(R.id.amount_remove_Button);
+        amountsListView       = amountEntryLayout.findViewById(R.id.amounts_List);
         totalAmountEdit       = amountEntryLayout.findViewById(R.id.total_amount_Edit);
         calculateButton       = amountEntryLayout.findViewById(R.id.calculate_Button);
         defaultValueSpinner   = getResources().getString(R.string.country_select_prompt);
@@ -74,6 +75,7 @@ public class FragmentAmountEntry extends Fragment {
         amountsEntryAdapter   = new AmountEntryToAdapter(getActivity());
         messageToast          = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
         fragmentManager       = getFragmentManager();
+        selectedAmountList    = -1;
 
         // Configura Pais
         countriesSpinner.setAdapter(countriesAdapter.getAdapter());
@@ -106,7 +108,8 @@ public class FragmentAmountEntry extends Fragment {
         amountsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedAmountList = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+                //selectedAmountList = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+                selectedAmountList = i;
             }
         });
 
@@ -135,12 +138,12 @@ public class FragmentAmountEntry extends Fragment {
         amountRemoveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( selectedAmountList == null ){
+                if( selectedAmountList == -1 ){
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.amount_no_selected_list_Text);
                 }else{
                     amountsListView.setAdapter(amountsEntryAdapter.getAdapter(selectedAmountList,false));
-                    selectedAmountList = null;
+                    selectedAmountList = -1;
 
                     // Calcula o recalcula el monto total
                     calculateTotalAmount();
@@ -228,6 +231,11 @@ public class FragmentAmountEntry extends Fragment {
         }
         messageToast.setText(idString);
         messageToast.show();
+    }
+
+    /* Metodo que se encarga de limpiar toda la lista de montos */
+    public static void clearAmountsListView(){
+        amountsListView.setAdapter(amountsEntryAdapter.getAdapter( null,false));
     }
 
     /* Metodo que activa el fragmentDialog con los resultados

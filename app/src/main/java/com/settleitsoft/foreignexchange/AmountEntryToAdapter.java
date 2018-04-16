@@ -26,7 +26,11 @@ public class AmountEntryToAdapter {
      * en la lista actualmente.
      */
     private void removeAmountEntryArray( Integer amount  ){
-        this.amountsArray.remove( amount );
+        if( amount == null ){
+            this.amountsArray.removeAll( this.amountsArray );   // Remover toda la lista
+        }else{
+            this.amountsArray.remove( amount.intValue() );      // Remover un item de la lista
+        }
     }
 
     /* Metodo que se encarga de configurar el adapatador. */
