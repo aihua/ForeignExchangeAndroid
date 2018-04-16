@@ -22,7 +22,6 @@ public class FragmentAmountEntry extends Fragment {
 
     private View amountEntryLayout;
     private ArrayList<String> data;
-    private ArrayList<Integer> selectedAmountsArray;
     private Spinner countriesSpinner;
     private CountriesToAdapter countriesAdapter;
     private FloatingActionButton amountAddButton, amountRemoveButton;
@@ -32,6 +31,7 @@ public class FragmentAmountEntry extends Fragment {
     private Button calculateButton;
     private String defaultValueSpinner;
 
+    private static ArrayList<Integer> selectedAmountsArray;
     private static AmountEntryToAdapter amountsEntryAdapter;
     private static ListView amountsListView;
     private static HashMap<String,String> iSOCountries;
@@ -83,6 +83,7 @@ public class FragmentAmountEntry extends Fragment {
 
         // Configura los eventos de escucha
         listenerEventsSetup();
+        calculateTotalAmount();
 
         return amountEntryLayout;
     }
@@ -189,21 +190,6 @@ public class FragmentAmountEntry extends Fragment {
         });
     }
 
-    /* Metodo que se encarga de calcular el monto
-     * total para la conversion.
-     */
-    private void calculateTotalAmount(){
-
-        selectedAmountsArray = amountsEntryAdapter.getAmountsArray();
-        Integer totalAmount  = 0;
-
-        for( Integer amount: selectedAmountsArray ){
-            totalAmount += amount;
-        }
-
-        totalAmountEdit.setText(totalAmount.toString());
-    }
-
     /* Metodo que obtiene la posicion actual en el arreglo
      * perteneciente al spinner la ciudad que es requerida.
      */
@@ -221,6 +207,21 @@ public class FragmentAmountEntry extends Fragment {
         return position;
     }
 
+    /* Metodo que se encarga de calcular el monto
+     * total para la conversion.
+     */
+    private static void calculateTotalAmount(){
+
+        selectedAmountsArray = amountsEntryAdapter.getAmountsArray();
+        Integer totalAmount  = 0;
+
+        for( Integer amount: selectedAmountsArray ){
+            totalAmount += amount;
+        }
+
+        totalAmountEdit.setText(totalAmount.toString());
+    }
+
     /* Configura los mensajes de aviso o alerta
      * para el usuario.
      */
@@ -236,6 +237,7 @@ public class FragmentAmountEntry extends Fragment {
     /* Metodo que se encarga de limpiar toda la lista de montos */
     public static void clearAmountsListView(){
         amountsListView.setAdapter(amountsEntryAdapter.getAdapter( null,false));
+        calculateTotalAmount();
     }
 
     /* Metodo que activa el fragmentDialog con los resultados
