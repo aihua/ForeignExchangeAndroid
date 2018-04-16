@@ -77,6 +77,7 @@ public class FragmentAmountEntry extends Fragment {
 
         // Configura Pais
         countriesSpinner.setAdapter(countriesAdapter.getAdapter());
+        countriesSpinner.setSelection(getCountryPosition("Colombia"));
 
         // Configura los eventos de escucha
         listenerEventsSetup();
@@ -198,6 +199,23 @@ public class FragmentAmountEntry extends Fragment {
         }
 
         totalAmountEdit.setText(totalAmount.toString());
+    }
+
+    /* Metodo que obtiene la posicion actual en el arreglo
+     * perteneciente al spinner la ciudad que es requerida.
+     */
+    private int getCountryPosition( String country ){
+
+        ArrayList<String> countriesArray = countriesAdapter.getCountriesArray();
+        int position = 0;
+
+        for ( int i = 0; i < countriesArray.size(); i++ ) {
+            if( country.equals(countriesArray.get(i)) ){
+                position = i;
+                break;
+            }
+        }
+        return position;
     }
 
     /* Configura los mensajes de aviso o alerta
